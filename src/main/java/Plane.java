@@ -34,4 +34,8 @@ public class Plane {
         return this.type.getCapacity(); // this getCapacity is from ENUM
     }
 
+    public void addPassenger(Passenger passenger) {
+        this.passengers.add(passenger);
+    }
+
 }
