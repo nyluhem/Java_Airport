@@ -34,8 +34,13 @@ public class Airport {
         return flight;
     }
 
+    //check capacity and sell ticket if space
     public void sellTicket(Flight flight, Passenger passenger) {
         Plane plane = flight.getPlane();
-        plane.addPassenger(passenger);
+        if (plane.getCapacity() > plane.checkPassengerSize()) {
+            plane.addPassenger(passenger);
+        }
     }
+
+
 }
