@@ -1,20 +1,24 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class AirportTest {
 
     Airport airport;
     Flight flight;
-    Plane plane;
+    Plane planeOne;
+    Plane planeTwo;
     Passenger passenger;
 
     @Before
     public void before() {
-        plane = new Plane(PlaneType.BOEING747, "EasyJet");
+        planeOne = new Plane(PlaneType.BOEING747, "EasyJet");
+        planeTwo = new Plane(PlaneType.AIRBUSA300, "Thompsons");
         airport = new Airport("CIA");
-        flight = new Flight("A121", plane, Destination.NEWYORK);
+        flight = new Flight("A121", planeOne, Destination.NEWYORK);
     }
 
     //has a code
@@ -32,27 +36,28 @@ public class AirportTest {
     //can add plane to hangar
     @Test
     public void canAddPlaneToHangar() {
-        airport.addPlane(plane);
+        airport.addPlane(planeOne);
         assertEquals(1, airport.checkHangarHasPlanes());
     }
 
     //can remove plane from hangar
     @Test
     public void canRemovePlaneFromHangar() {
-        airport.addPlane(plane);
-        airport.addPlane(plane);
-        airport.removePlane(plane);
+        airport.addPlane(planeOne);
+        airport.addPlane(planeTwo);
+        airport.removePlane(planeOne);
         assertEquals(1, airport.checkHangarHasPlanes());
     }
+
 
     //can create flight; add 2 planes, create flight1 and compare to what we expect.
     @Test
     public void canCreateFlight() {
-        airport.addPlane(plane);
-        airport.addPlane(plane);
-        Flight flight1 = airport.createFlight(Destination.EDINBURGH, "B100", plane);
+        airport.addPlane(planeOne);
+        airport.addPlane(planeTwo);
+        Flight flight1 = airport.createFlight(Destination.EDINBURGH, "B100", planeOne);
         assertEquals(1, airport.checkHangarHasPlanes());
-        Flight expectedFlight = new Flight ("B100", plane, Destination.EDINBURGH);
+        Flight expectedFlight = new Flight ("B100", planeOne, Destination.EDINBURGH);
         assertEquals(true, flight1.getFlightNo() == expectedFlight.getFlightNo());
     }
 
@@ -60,6 +65,6 @@ public class AirportTest {
     @Test
     public void canSellTicket() {
         airport.sellTicket(flight, passenger);
-        assertEquals(1, plane.checkPassengerSize());
+        assertEquals(1, planeOne.getTicketsSold());
     }
 }

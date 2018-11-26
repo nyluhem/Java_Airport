@@ -41,5 +41,5 @@ public class Plane {
     public int getAvailableSeats() {
         return getCapacity() - getTicketsSold();
     }
-    
+
 }

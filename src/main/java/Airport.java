@@ -16,6 +16,8 @@ public class Airport {
         return this.code;
     }
 
+    public ArrayList<Plane> returnHangar () {return this.hangar; }
+
     public int checkHangarHasPlanes() {
         return this.hangar.size();
         }
@@ -28,6 +30,7 @@ public class Airport {
         this.hangar.remove(plane);
     }
 
+
     public Flight createFlight(Destination destination, String flightCode, Plane plane) {
         Flight flight = new Flight(flightCode, plane, destination);
         this.removePlane(plane);
@@ -37,7 +40,7 @@ public class Airport {
     //check capacity and sell ticket if space
     public void sellTicket(Flight flight, Passenger passenger) {
         Plane plane = flight.getPlane();
-        if (plane.getCapacity() > plane.checkPassengerSize()) {
+        if (plane.getCapacity() > plane.getTicketsSold()) {
             plane.addPassenger(passenger);
         }
     }
