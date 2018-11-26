@@ -26,7 +26,7 @@ public class Plane {
         return this.passengers;
     }
 
-    public int checkPassengerSize() {
+    public int getTicketsSold() {
         return this.passengers.size();
     }
 
@@ -38,4 +38,8 @@ public class Plane {
         this.passengers.add(passenger);
     }
 
+    public int getAvailableSeats() {
+        return getCapacity() - getTicketsSold();
+    }
+    
 }

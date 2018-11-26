@@ -32,7 +32,7 @@ public class PlaneTest {
     // .size is function on arrayList in JAVA
     @Test
     public void canGetCollectionOfPassengers() {
-        assertEquals(0, plane.checkPassengerSize());
+        assertEquals(0, plane.getPassengers().size());
     }
 
     // plane type has a value
@@ -45,6 +45,7 @@ public class PlaneTest {
     @Test
     public void canAddPassenger() {
         plane.addPassenger(passenger);
-        assertEquals(1, plane.checkPassengerSize());
+        assertEquals(1, plane.getTicketsSold());
+
     }
 }
